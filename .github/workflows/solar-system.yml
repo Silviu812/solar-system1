@@ -45,7 +45,7 @@ jobs:
                 name: test-results
         -   name: Check Test Results
             run: |
-                if [ -f test-results/test-results.xml ]; then
+                if [ -f test-results.xml ]; then
                     echo "Test results found."
                 else
                     echo "Test results not found."
