@@ -1,0 +1,29 @@
+name : Solar System Workflow
+
+on:
+    workflow_dispatch:
+    push:
+
+jobs:
+    unit-testing:
+        name: Unit Testing
+        runs-on: ubuntu-latest
+        steps:
+        -   name: Checkout Code
+            uses: actions/checkout@v4
+
+        -   name: Set up NodeJS
+            uses: actions/setup-node@v3
+            with:
+                node-version: '18'
+
+        -   name: Install Dependencies
+            run: npm install
+
+        -   name: NPM Test
+            run: npm test
+
+        -   name: Run Unit Tests
+            run: |
+                echo "Running unit tests..."
+                # Add your unit testing commands here
