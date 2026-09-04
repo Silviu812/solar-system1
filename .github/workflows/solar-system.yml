@@ -28,7 +28,25 @@ jobs:
         -   name: NPM Test
             run: npm test
 
-        -   name: Run Unit Tests
+        -   name: upload Test Results
+            uses: actions/upload-artifact@v3
+            with:
+                name: test-results
+
+    job2:
+        name: Check Test
+        runs-on: ubuntu-latest
+        steps:
+        -   name: Download Code
+            uses: actions/download-artifact@v3
+            with:
+                name: test-results
+        -   name: Check Test Results
             run: |
-                echo "Running unit tests..."
-                # Add your unit testing commands here
+                if [ -f test-results/test-results.xml ]; then
+                    echo "Test results found."
+                else
+                    echo "Test results not found."
+                    exit 1
+                fi
+            
